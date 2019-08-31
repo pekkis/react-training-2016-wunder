@@ -1,9 +1,14 @@
-import promiseMiddleware from "redux-promise-middleware";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import * as reducers from "../ducks";
 
+const sagaMiddleware = createSagaMiddleware();
+
+export function getSagaMiddleware() {
+  return sagaMiddleware;
+}
+
 export function getMiddlewares() {
-  let middlewares = [thunk, promiseMiddleware];
+  let middlewares = [sagaMiddleware];
   return middlewares;
 }
 

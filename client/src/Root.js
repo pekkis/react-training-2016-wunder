@@ -12,7 +12,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Comic Sans MS";
     margin: 1em;
     font-size: 16px;
-    background-image: url(${money});
+    background-image: linear-gradient(
+        15deg,
+        rgba(0, 250, 255, 0.8),
+        rgba(255, 255, 255, 0.9)
+      ), url(${money});
   }
 `;
 

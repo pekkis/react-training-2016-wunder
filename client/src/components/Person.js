@@ -4,20 +4,22 @@ import { lighten } from "polished";
 import { Link } from "react-router-dom";
 
 const Person = props => {
-  const { person, className, firePerson } = props;
+  const { person, className, firePerson, readOnly } = props;
   return (
     <div className={className}>
       <Link to={`/person/${person.id}`}>
         {person.lastName}, {person.firstName}
       </Link>
-      <div>
-        <button
-          disabled={person.isBeingFired}
-          onClick={() => firePerson(person.id)}
-        >
-          Liberate
-        </button>
-      </div>
+      {!readOnly && (
+        <div>
+          <button
+            disabled={person.isBeingFired}
+            onClick={() => firePerson(person.id)}
+          >
+            Liberate
+          </button>
+        </div>
+      )}
     </div>
   );
 };

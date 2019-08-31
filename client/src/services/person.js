@@ -10,9 +10,16 @@ const getPersons = async () => {
   }
 };
 
-const firePerson = async id => {
+const firePerson = async (token, id) => {
   try {
-    const ret = await axios.delete(`${process.env.REACT_APP_API}/person/${id}`);
+    const ret = await axios.delete(
+      `${process.env.REACT_APP_API}/person/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      }
+    );
     return ret.data;
   } catch (e) {
     console.log(e);
@@ -20,9 +27,17 @@ const firePerson = async id => {
   }
 };
 
-const hirePerson = async person => {
+const hirePerson = async (token, person) => {
   try {
-    const ret = await axios.post(`${process.env.REACT_APP_API}/person`, person);
+    const ret = await axios.post(
+      `${process.env.REACT_APP_API}/person`,
+      person,
+      {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      }
+    );
     return ret.data;
   } catch (e) {
     console.log(e);

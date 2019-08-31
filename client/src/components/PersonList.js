@@ -1,7 +1,6 @@
 import React from "react";
 import Person from "./Person";
 import PropTypes from "prop-types";
-// import { List } from "immutable";
 import ImmutablePropTypes from "react-immutable-proptypes";
 
 const PersonList = props => {
@@ -13,9 +12,13 @@ const PersonList = props => {
     <div>
       {showMetadata && <p>Average age: {avg.toFixed(2)}</p>}
 
-      {persons.toList().map(person => {
-        return <Person key={person.id} {...rest} person={person} />;
-      })}
+      {persons
+        .sortBy(p => p.firstName)
+        .sortBy(p => p.lastName)
+        .toList()
+        .map(person => {
+          return <Person key={person.id} {...rest} person={person} />;
+        })}
     </div>
   );
 };

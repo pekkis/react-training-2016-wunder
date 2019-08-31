@@ -33,7 +33,8 @@ const HirePersonForm = props => {
           ...values,
           id: uuid(),
           gender: "f",
-          age: 30
+          age: 30,
+          birthDay: new Date(1989, 2, 20, 0, 0, 0, 0)
         };
 
         hirePerson(newPerson);

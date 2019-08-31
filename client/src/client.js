@@ -3,8 +3,14 @@ import ReactDOM from "react-dom";
 import Root from "./Root";
 
 import { createStore } from "./services/redux";
-import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
+import {
+  getMiddlewares,
+  getReducers,
+  getEnhancers,
+  getSagaMiddleware
+} from "./config/redux";
 import { getInitialState } from "./config/state";
+import rootSaga from "./sagas/root";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +24,10 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
+
+const sagaMiddleware = getSagaMiddleware();
+
+sagaMiddleware.run(rootSaga);
 
 // Just a small DRY abstraction here.
 function render(Component, rootElement, method = "render") {
